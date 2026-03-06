@@ -1,8 +1,15 @@
 import express from 'express'; 
 import dotenv from 'dotenv'
+import connectDB from './db/database.js';
 const app = express()
 
 const port = process.env.PORT || 8000
+
+connectDB()
+
+dotenv.config({
+    path: './env'
+})
 
 app.get('/', (req, res)=>{
     res.send("<h1>Hello This is Homepage</h1>")
