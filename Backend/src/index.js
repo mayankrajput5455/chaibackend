@@ -1,9 +1,12 @@
-import express from 'express'; 
 import dotenv from 'dotenv'
 import connectDB from './db/database.js';
-const app = express()
+import { app } from './app.js';
 
-const port = process.env.PORT || 8000
+dotenv.config({
+    path: './env'
+})
+
+const port = process.env.PORT || 3000
 
 connectDB()
     .then(() => {
@@ -12,10 +15,6 @@ connectDB()
         })
     })
     .catch((err) => {console.log("MongoDB connection failed !!!", err)})
-
-dotenv.config({
-    path: './env'
-})
 
 app.get('/', (req, res)=>{
     res.send("<h1>Hello This is Homepage</h1>")
